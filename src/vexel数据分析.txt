@@ -1,0 +1,27 @@
+data/labels.mat -> "labels" 
+					shape = [1,30] 
+					value = [ 2  3  4  7  8 10 11 12 13 14 15 16 17 18 24 28 31 41 42 43 46 47 49 50
+ 							51 52 53 54 60 63]
+
+
+data/atlas_norm.npz -> "vol": shape=[160,192,224]
+					   "seg": shape=[160,192,224]
+					   "train_avg": shape=[256,]
+
+
+data/test_vol.npz -> "vol_data": shape=[160,192,224]
+
+
+model = Model(inputs=[src, tgt], outputs=[y, flow])
+				!!!!shape这里都省略了batchsize， src&tgt都是Input类型的
+				src: shape=[160,192,224,1]
+				tgt: shape=[160x192x224x1]
+				y: shape=[160x192x224x1]
+				flow: shape=[160x192x224x3]
+
+pred = net.predict([X_vol, atlas_vol])
+					X_vol: shape=1x160x192x224x1
+					atals_vol: shape=1x160x192x224x1
+					pred[0]: shape=1x160x192x224x1
+					pred[1]: shape=1x160x192x224x3
+
